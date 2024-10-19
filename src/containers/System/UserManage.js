@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss'
-import { getAllUserAPI, createUserAPI } from '../../services/userService'
+import { getAllUserAPI, createUserAPI, deleteUserAPI, updateUserAPI } from '../../services/userService'
 import ModalUser from './ModalUser';
+import ModalEditUser from './ModalEditUser';
+import { emitter } from '../../utils/emitter'
 
 class UserManage extends Component {
 
@@ -12,7 +14,8 @@ class UserManage extends Component {
         this.state = {
             arrUsers: [],
             isOpenModalUser: false,
-
+            isOpenModalEditUser: false,
+            userEdit: {}
         };
     }
 
@@ -30,9 +33,15 @@ class UserManage extends Component {
 
         }
     }
+
     toggleUserModal = () => {
         this.setState({
-            isOpenModalUser: !this.state.isOpenModalUser
+            isOpenModalUser: !this.state.isOpenModalUser,
+        })
+    }
+    toggleUserEditModal = () => {
+        this.setState({
+            isOpenModalEditUser: !this.state.isOpenModalEditUser,
         })
     }
     handleAddNewUser = () => {
@@ -41,11 +50,23 @@ class UserManage extends Component {
         })
     };
     handleEditUser = (user) => {
-        // Logic to handle edit action
+        this.setState({
+            isOpenModalEditUser: true,
+            userEdit: user
+        })
     };
 
-    handleDeleteUser = (user) => {
-        // Logic to handle delete action
+    handleDeleteUser = async (user) => {
+        try {
+            let res = await deleteUserAPI(user.id)
+            if (res && res.errCode !== 0) {
+                alert(res.message)
+            } else {
+                await this.getAllUsers()
+            }
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     createNewUser = async (data) => {
@@ -55,11 +76,24 @@ class UserManage extends Component {
                 alert(response.message)
             } else {
                 await this.getAllUsers()
+                emitter.emit('EVENT_CLEAR_MODAL_DATA', { 'id': data.id })
             }
         } catch (error) {
             console.log(error)
         }
-        console.log(data)
+    }
+
+    updateUser = async (data) => {
+        try {
+            let response = await updateUserAPI(data)
+            if (response && response.errCode !== 0) {
+                alert(response.message)
+            } else {
+                await this.getAllUsers()
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render() {
@@ -73,6 +107,15 @@ class UserManage extends Component {
                         toggleFromParent={this.toggleUserModal}
                         createNewUser={this.createNewUser}
                     />
+                    {
+                        this.state.isOpenModalEditUser &&
+                        <ModalEditUser
+                            isOpen={this.state.isOpenModalEditUser}
+                            toggleFromParent={this.toggleUserEditModal}
+                            currentUser={this.state.userEdit}
+                            updateUser={this.updateUser}
+                        />
+                    }
                     <div className="title text-center">Manage user with Eric</div>
                     <div className="mx-1">
                         <button className='btn btn-primary px-3' onClick={() => this.handleAddNewUser()}>
