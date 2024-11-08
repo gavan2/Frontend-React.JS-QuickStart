@@ -1,50 +1,50 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import './Specialty.scss'
+import './MedicalSpecialty.scss'
 import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 import { loadPreset } from '@babel/core/lib/config/files/plugins';
 
 
-class Specialty extends Component {
-
+class MedicalSpecialty extends Component {
+    
 
     render() {
-
+      
         return (
             <>
-                <div className="section-share section-specialty">
+                <div className="section-share section-medical-facility">
                     <div className="section-container">
                         <div className="section-header">
-                            <span className='title-section'>Chuyên khoa phổ biến</span>
-                            <button className='btn-section'>Xem thêm</button>
+                            <span className='title-section'>Cơ sở y tế nổi bật</span>
+                            <button className='btn-section'>Tìm kiếm</button>
                         </div>
                         <div className="section-body">
                             <Slider {...this.props.settings}>
                                 <div className='section-customize' >
-                                    <div className='bg-image section-specialty'></div>
-                                    <div>Cơ Xương Khớp 1</div>
+                                    <div className='bg-image section-medical-facility'></div>
+                                    <div>Hệ thống y tế 1</div>
                                 </div>
                                 <div className='section-customize'>
-                                    <div className='bg-image section-specialty'></div>
-                                    <div>Cơ Xương Khớp 2</div>
+                                    <div className='bg-image section-medical-facility'></div>
+                                    <div>Hệ thống y tế 2</div>
                                 </div>
                                 <div className='section-customize'>
-                                    <div className='bg-image section-specialty'></div>
-                                    <div>Cơ Xương Khớp 3</div>
+                                    <div className='bg-image section-medical-facility'></div>
+                                    <div>Hệ thống y tế 3</div>
                                 </div>
                                 <div className='section-customize'>
-                                    <div className='bg-image section-specialty'></div>
-                                    <div>Cơ Xương Khớp 4</div>
+                                    <div className='bg-image section-medical-facility'></div>
+                                    <div>Hệ thống y tế 4</div>
                                 </div>
                                 <div className='section-customize'>
-                                    <div className='bg-image section-specialty'></div>
-                                    <div>Cơ Xương Khớp 5</div>
+                                    <div className='bg-image section-medical-facility'></div>
+                                    <div>Hệ thống y tế 5</div>
                                 </div>
                                 <div className='section-customize'>
-                                    <div className='bg-image section-specialty'></div>
-                                    <div>Cơ Xương Khớp 6</div>
+                                    <div className='bg-image section-medical-facility'></div>
+                                    <div>Hệ thống y tế 6</div>
                                 </div>
                             </Slider>
                         </div>
@@ -70,4 +70,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(MedicalSpecialty);
