@@ -1,7 +1,11 @@
 .home-header-container {
-    height : 60px;
-    width  : 100%;
-    padding: 0 40px;
+    height    : 60px;
+    width     : 100%;
+    padding   : 0 40px;
+    top       : 0;
+    position  : sticky;
+    background: white;
+    z-index   : 10000;
 
     .home-header-content {
         width  : 100%;
@@ -96,13 +100,12 @@
     background-repeat  : no-repeat;
     background-size    : cover;
     background-position: center;
-    padding            : 15px 0;
     display            : flex;
     flex-direction     : column;
 
     .content-up {
         background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.1));
-        height          : 60%;
+        height          : 65%;
         padding-top     : 15px;
 
         .title1 {
@@ -151,7 +154,6 @@
         display         : flex;
         align-items     : flex-end;
         justify-content : center;
-        margin-bottom   : 5px;
         padding-bottom  : 10px;
 
         .options {
@@ -188,7 +190,7 @@
                     font-weight: 500;
                     cursor     : pointer;
 
-                    & :hover {
+                    &:hover {
                         color: #0690be;
                     }
                 }

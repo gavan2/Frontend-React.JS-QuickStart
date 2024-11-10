@@ -12,16 +12,25 @@
     }
 }
 
-.slick-prev ::before,
-.slick-next ::before {
-    font-family: FontAwesome !important;
+.slick-prev::before,
+.slick-next::before {
+    font-family: "Glyphicons Halflings" !important;
     color      : red !important;
 }
 
+
 .slick-next {
-    right : -10px !important;
-    height: 48px !important;
-    width : 44px !important;
+    right     : 10px !important;
+    z-index   : 1000 !important;
+    height    : 48px !important;
+    width     : 44px !important;
+    background: #fff !important;
+    border    : 2px solid #d7d7d7 !important;
+
+    &:hover {
+        background: #eceaec !important;
+
+    }
 }
 
 
@@ -29,6 +38,7 @@
 
 .section-share {
     height: 330px;
+    margin: 0 100px;
 
     .section-container {
         margin        : 0 100px;
@@ -39,6 +49,7 @@
             height       : 60px;
             margin-bottom: 30px;
             padding-top  : 30px;
+          
 
             .title-section {
                 font-size  : 22px;
@@ -55,7 +66,7 @@
                 cursor        : pointer;
                 text-transform: uppercase;
 
-                & :hover {
+                &:hover {
                     color     : #fff;
                     background: #f7d800;
                 }
@@ -69,12 +80,46 @@
 }
 
 .section-share {
+
     &.section-specialty {
         background: #f5f5f5;
     }
 
     &.section-outstanding-doctor {
         background: #f5f5f5;
+    }
+
+    &.section-about {
+        margin       : 0 100px;
+        height       : 500px;
+        border-top   : 1px solid #f5f5f5;
+        border-bottom: 1px solid #f5f5f5;
+
+        .section-about-header {
+            padding    : 20px 10px;
+            font-size  : 22px;
+            font-weight: 600;
+        }
+
+        .section-about-content {
+            display: flex;
+            gap    : 15px;
+            width  : 100%;
+
+            .content-left {
+                width: 60%;
+            }
+
+            .content-right {
+                width: 40%;
+
+                p {
+                    text-align: justify;
+                    font-style: italic;
+                    padding   : 15px;
+                }
+            }
+        }
     }
 
     .section-body {
@@ -126,5 +171,14 @@
         justify-content: center;
         margin-bottom  : 10px;
 
+    }
+}
+
+.home-footer {
+    text-align : center;
+    padding-top: 8px;
+
+    a {
+        text-decoration: none;
     }
 }
